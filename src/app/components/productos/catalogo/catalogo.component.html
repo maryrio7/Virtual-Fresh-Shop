@@ -1,0 +1,51 @@
+
+<div class="card-body">
+    <div class="mat-elevation-z8 col-md-3 bl1 btn-group-vertical">
+        <!-- LUGAR PARA AÑADIR CATEGORÍAS -->
+        <button class="btn-secondary btn" role="group" (click)="s1=!s1; s2=false; s3=false; filtrarCat('ropa')" [class.selected]="s1">Ropa</button>
+        <button class="btn-secondary btn" role="group" (click)="s2=!s2; s1=false; s3=false; filtrarCat('comida')" [class.selected]="s2">Comida</button>
+        <button class="btn-secondary btn" role="group" (click)="s3=!s3; s1=false; s2=false; filtrarCat('accesorios')" [class.selected]="s3">Accesorios</button>
+    </div>
+    <div class="mat-elevation-z8 col-md-8 bl2" >
+        <br>
+        <h4 class="text-center">Catálogo</h4>
+        <input id="inputFiltro" (keyup)="filtrarTabla($event.target.value)" placeholder="Filtrar">
+        <br><br>
+        <mat-table [dataSource]="datasource" matSort>
+            <ng-container matColumnDef="imagen" >
+            <mat-header-cell *matHeaderCellDef class="imagen_celda"></mat-header-cell>
+            <mat-cell *matCellDef="let producto" class="imagen_celda"><img class="imagen_producto" [src]="producto.url"> </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="nombre_producto">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Producto</mat-header-cell>
+                <mat-cell *matCellDef="let producto" class="celda">{{producto.nombre_producto}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="precio">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell>
+                <mat-cell *matCellDef="let producto" class="celda">{{producto.precio}} €</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</mat-header-cell>
+                <mat-cell *matCellDef="let producto" class="celda">
+                    {{producto.cantidad}} 
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="botones" class="botones">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                    <mat-cell *matCellDef="let producto" >
+                        <button class="btn btn-success btn-xs plus" (click)="anadirAlCarro(producto)"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-danger btn-xs minus" (click)="quitarDelCarro(producto)"><i class="fas fa-minus"></i></button>
+                    </mat-cell>
+                </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+            
+            <mat-row *matRowDef="let producto; columns: displayedColumns"></mat-row>
+        </mat-table>
+        
+        <mat-paginator [pageSize]="pageSize" 
+            [pageSizeOptions]="pageSizeOptions" showFirstLastButtons ></mat-paginator>
+    </div>
+</div>

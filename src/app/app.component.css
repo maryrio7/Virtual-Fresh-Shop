@@ -1,0 +1,15 @@
+.subtexto {
+    color:white;
+    font-size: 14px;
+}
+.logged{
+    color: yellow;
+    font-size: 16px;
+    padding-top: 5px
+}
+.logout{
+    padding-bottom: 5px;
+}
+#carro {
+    margin-left: 7px;
+}

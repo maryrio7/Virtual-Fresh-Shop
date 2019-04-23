@@ -1,0 +1,118 @@
+<div class="card-body">
+  <div class="mat-elevation-z8 col-md-6 factura">
+    <div class="listado" *ngIf="carrito!==null && carrito.length; else vacio">
+      <br>
+      <mat-progress-bar mode="determinate" value="{{progreso()*33+1}}"></mat-progress-bar>
+      <div class="primero" *ngIf="progreso()==1">
+        <br>
+        <h4 class="text-center">Tu carrito de la compra</h4>
+        <br>
+        <table >
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let producto of carrito" style="border-top: 1px solid #e5e5e5">
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.precio}} € </td>
+            <td>x {{producto.cantidad}}</td>
+            <td style="padding-left: 20px">{{producto.precio * producto.cantidad}} €</td>
+          </tr>
+          <tr style="border-top: 1px solid black;">
+            <th colspan="3" style="text-align: right">
+              Total:
+            </th>
+            <td style="padding-left: 20px">
+                {{sesion.contarPrecios()}} €
+            </td>
+          </tr>
+        </table>
+        <hr flex>
+        <button class="btn btn-danger" (click)="sesion.vaciarCarrito(); this.carrito = null">Vaciar carrito</button>
+        <button class="btn btn-primary pagar" (click)="siguiente()">Siguiente</button>
+      </div>
+
+      <div class="segundo" *ngIf="progreso()==2">
+        <br>
+        <h4 class="text-center">Datos del pedido</h4>
+        <br>
+        <div class="card-body">
+            <div class="form-group">
+              <label>Nombre completo: *</label>
+              <input type="text" #nombre class="form-control" required minlength="10">
+            </div>
+            <div class="form-group">
+              <label>Dirección: *</label>
+              <input type="text" class="form-control" #direccion required minlength="10">
+            </div>
+            <div class="form-group">
+              <label>Teléfono: </label>
+              <input type="text" class="form-control" #telefono >
+            </div>
+          </div>
+          <hr flex>
+        <button class="btn btn-danger" (click)="atras()">Atrás</button>
+        <button class="btn btn-primary pagar" (click)="resumen(nombre.value, direccion.value, telefono.value)">Siguiente</button>
+      </div>
+      
+      <div class="primero" *ngIf="progreso()==3">
+        <br>
+        <h4 class="text-center">Resumen del pedido</h4>
+        <br>
+        <table >
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let producto of carrito" style="border-top: 1px solid #e5e5e5">
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.precio}} € </td>
+            <td>x {{producto.cantidad}}</td>
+            <td style="padding-left: 20px">{{producto.precio * producto.cantidad}} €</td>
+          </tr>
+          <tr style="border-top: 1px solid black;">
+            <th colspan="3" style="text-align: right">
+              Total:
+            </th>
+            <td style="padding-left: 20px">
+                {{sesion.contarPrecios()}} €
+            </td>
+          </tr>
+        </table>
+        <hr flex>
+        <h5 style="margin-bottom: 12px" class="text-center">Datos del envío</h5>
+          <p><b>Nombre:</b> {{nombre}}</p>
+          <p><b>Dirección:</b> {{direccion}}</p>
+          <p><b>Teléfono:</b> {{telefono}}</p>
+        <hr flex>
+        <button class="btn btn-danger" (click)="atras()">Atrás</button>
+        <button class="btn btn-primary pagar" (click)="generarPedido()">Confirmar Pedido</button>
+      </div>
+
+      
+    </div>
+    
+    <ng-template #vacio >
+        <div class="primero" *ngIf="progreso()==4; else fin">
+            <br>
+            <h4 class="text-center">Pedido realizado</h4>
+            <br>
+            <p class="vacio">Tu pedido se ha realizado con éxito. Puedes consultar el estado de tus pedidos 
+              <a href="pedidos">aquí</a>.</p>
+            
+        </div>
+        <ng-template #fin>
+            <br>
+            <h4 class="text-center">Tu carrito de la compra</h4>
+            <br>
+            <p class="vacio">Tu carrito está vacío. Prueba a añadir productos</p>
+        </ng-template>
+      
+    </ng-template>
+
+  </div>
+</div>

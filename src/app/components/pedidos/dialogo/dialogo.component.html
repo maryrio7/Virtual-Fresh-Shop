@@ -1,0 +1,40 @@
+<h2 mat-dialog-title style="text-align: center">Detalles del pedido</h2>
+
+<mat-dialog-content>
+
+  <p><b>Nº Pedido:</b> {{data.id}}</p>
+  <p><b>Fecha:</b> {{data.fecha}}</p>
+  <p><b>Estado:</b> {{data.estado}}</p>
+  <table >
+    <tr>
+      <th>Lista de </th>
+      <th> productos</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let datos of data.lista">
+      <td>{{datos.nombre}}</td>
+      <td style="text-align: right">{{datos.precio}} €</td>
+      <td style="text-align: right">x {{datos.cantidad}}</td>
+      <td style="text-align: right">{{datos.precio*datos.cantidad}} €</td>
+    </tr>
+    <tr style="border-top: 1px solid black;">
+      <th colspan="3" style="text-align: right">
+        Total:
+      </th>
+      <td style="padding-left: 20px">
+          {{data.precio}} €
+      </td>
+    </tr>
+  </table>
+
+  <p><b>Nombre:</b> {{data.nombre}}</p>
+  <p><b>Dirección:</b> {{data.direccion}}</p>
+  <p><b>Teléfono:</b> {{data.telefono}}</p>
+</mat-dialog-content>
+
+ 
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

@@ -1,0 +1,21 @@
+<div class="container pt-3" style="margin-top: 20px">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-10 col-md-5">
+        <div class="card border-info">
+          <div class="card-header">Login</div>
+          <div class="card-body">
+              
+                  <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
+                  <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
+                  <button class="btn btn-lg btn-primary btn-block mb-2"
+                  (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+              
+              <div style="text-align: center">
+                ¿No tienes una cuenta? 
+                <a href="register">Regístrate aquí</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,49 @@
+<!--BARRA DE NAVEGACIÓN FIJA -->
+<nav class="navbar navbar-dark bg-dark" style="padding-left: 125px">
+  <a href="/" class="navbar-brand">
+    <i class="fas fa-home"></i> NgProductos
+  </a>
+  <a href="cart" class="navbar-brand" style=" color: yellow;">
+    <div id="carro"><i class="fas fa-shopping-cart"></i>  
+    {{sesion.contarProductos()}}  </div>
+    <div class="subtexto">Total: {{sesion.contarPrecios()}} € </div>
+  </a>
+  <a href="contacto" class="navbar-brand">
+     Contacto
+  </a>
+  <!-- Si está logueado y es admin-->
+  <a *ngIf="authService.isAdmin" href="admin-productos" class="navbar-brand" style="margin-right: 125px; color: rgb(220, 220, 220);">
+    <i class="fas fa-gem"></i> Admin-productos
+  </a>
+  
+    <!-- Si está logueado -->
+  <div *ngIf="authService.isLoggedIn">
+    <div class="pedidos">
+        <a href="pedidos"   class="navbar-brand" style="margin-right: 125px; color: rgb(220, 220, 220);">
+            Lista pedidos
+        </a>
+    </div>
+  </div>
+
+  <div *ngIf="authService.isLoggedIn; else login">
+    <div class="logged">
+      <span> {{authService.getEmail()}}</span><br>
+      <a href="#"  (click)="authService.logout()" class="navbar-brand navbar-right logout" style="margin-right: 125px; color: rgb(220, 220, 220);">
+          <i class="fas fa-sign-in-alt"></i> Cerrar sesión
+      </a>
+    </div>  
+  </div>
+  
+    <!-- Si no está logueado-->
+    <ng-template #login>
+      <a href="login" class="navbar-brand navbar-right" style="margin-right: 125px; color: rgb(220, 220, 220);">
+          <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+    </ng-template>
+  
+
+</nav>
+
+<!--Contenido de la web según la ruta -->
+<router-outlet></router-outlet>
+

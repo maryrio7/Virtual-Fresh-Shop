@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8 col-md-12 lista" >
+    <br>
+    <h4 class="text-center">Lista de pedidos</h4>
+    <input id="inputFiltro" (keyup)="filtrarTabla($event.target.value)" placeholder="Filtrar">
+    <br><br>
+    <mat-table [dataSource]="datasource" matSort>
+        <ng-container matColumnDef="$id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id pedido</mat-header-cell>
+            <mat-cell *matCellDef="let pedido" class="celda">{{pedido.$id}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="email_usuario">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Email usuario</mat-header-cell>
+            <mat-cell *matCellDef="let pedido" class="celda">{{pedido.email_usuario}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="precio_prod">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Importe</mat-header-cell>
+            <mat-cell *matCellDef="let pedido" class="celda">{{pedidosService.importeTotal(pedido.precio_prod)}} €</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</mat-header-cell>
+            <mat-cell *matCellDef="let pedido" class="celda">{{pedido.fecha}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let pedido" class="celda">
+              {{pedido.estado}} 
+             
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="botones" class="botones">
+            <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+            <mat-cell *matCellDef="let pedido" >
+                <button class="btn btn-success btn-xs" (click)="pedidosService.editarPedido(pedido,'Enviado')"><i class="fas fa-check"></i></button>
+                <button class="btn btn-warning btn-xs" (click)="pedidosService.editarPedido(pedido,'Pendiente')"><i class="fas fa-question"></i></button>
+                <button class="btn btn-danger btn-xs" (click)="pedidosService.editarPedido(pedido,'Cancelado')"><i class="fas fa-times"></i></button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="botones2" class="botones">
+            <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+            <mat-cell *matCellDef="let pedido" >
+                <button class="btn btn-info btn-xs" (click)="pedidosService.openDialog(pedido)">Detalles</button>
+            </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        
+        <mat-row *matRowDef="let pedido; columns: displayedColumns"></mat-row>
+    </mat-table>
+    
+    <mat-paginator [pageSize]="pageSize" 
+        [pageSizeOptions]="pageSizeOptions" showFirstLastButtons ></mat-paginator>
+</div>

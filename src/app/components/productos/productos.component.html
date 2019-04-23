@@ -1,0 +1,14 @@
+<div class="container" *ngIf="authService.isAdmin; else mensaje">
+  <div class="row">
+    <div class="col-md-5">
+      <app-producto></app-producto>
+    </div>
+    <div class="col-md-5 text-center">
+
+      <app-lista-productos></app-lista-productos>
+    </div>
+  </div>
+</div>
+<ng-template #mensaje>
+  <p>Oops! No hemos encontrado nada</p>
+</ng-template>

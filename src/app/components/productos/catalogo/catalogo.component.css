@@ -1,0 +1,44 @@
+
+#inputFiltro {
+    width: 300px;
+    font-size: 18px;
+    padding: 2px;
+    margin: 5px;
+    float: right;
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+button {
+    margin: 2px;
+}
+.bl2 {
+    float:right;
+}
+.bl1{
+    float:left;
+    margin-left: 50px;
+}
+.imagen_producto {
+    margin: 10px;
+    width: 150px;
+    max-height: 200px;
+}
+.celda {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 18px;
+}
+.imagen_celda{
+    margin-right: 50px;
+}
+.btn-secondary{
+    background-color: #0175d8;
+    color:white;
+    padding: 10px;
+}
+.selected{
+    background-color: lightskyblue;
+    color:black;
+    font-weight: bold;
+    border: 4px solid black;
+    border-radius: 2px;
+}

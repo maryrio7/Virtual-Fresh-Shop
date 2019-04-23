@@ -1,0 +1,9 @@
+<div class="container" *ngIf="authService.isAdmin; else usuario">
+  <app-pedidos-admin></app-pedidos-admin>
+</div>
+
+<ng-template #usuario>
+  <div class="container">
+    <app-pedidos-usuario></app-pedidos-usuario>
+  </div>
+</ng-template>

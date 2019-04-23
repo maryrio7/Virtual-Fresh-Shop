@@ -1,0 +1,49 @@
+<div class="card mt-5">
+  <div class="card-body">
+      <h5 class="text-center">Formulario de creación de producto</h5>
+      <br>
+    <form #productoForm="ngForm" (ngSubmit)="onSubmit(productoForm)">
+      <input type="hidden" name="$id" #$id="ngModel" [(ngModel)]="productoService.seleccionarProducto.$id">
+      <input type="hidden" name="cantidad" #cantidad="ngModel" [(ngModel)]="productoService.seleccionarProducto.cantidad">
+      <div class="form-group">
+        <input type="text" class="form-control" name="nombre_producto" #nombre_producto="ngModel" 
+        [(ngModel)]="productoService.seleccionarProducto.nombre_producto" placeholder="Añadir nombre del producto">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="descripcion" #descripcion="ngModel" 
+        [(ngModel)]="productoService.seleccionarProducto.descripcion" placeholder="Añadir descripción de producto">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="precio" #precio="ngModel" 
+        [(ngModel)]="productoService.seleccionarProducto.precio" placeholder="Añadir precio del producto">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" name="categoria" #categoria="ngModel" 
+        [(ngModel)]="productoService.seleccionarProducto.categoria" placeholder="Añadir categoría del producto">
+      </div>
+
+      <div class="form-group">
+        <input type="file" class="form-control" name="imagen" #imagen="ngModel" 
+        [(ngModel)]="productoService.seleccionarProducto.imagen" accept=".png, .jpeg, .jpg, .gif" (change)="onFileSelected($event)">
+      </div>
+
+      <div class="form-group">
+          <input type="text" class="form-control" name="stock" #stock="ngModel" 
+          [(ngModel)]="productoService.seleccionarProducto.stock" placeholder="Stock">
+        </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-plus-circle"></i> Añadir producto
+        </button>
+        <button class="btn btn-secondary" type="reset" (click)="resetForm(productoForm)">
+            <i class="fas fa-sync-alt"></i> Reset
+          </button>
+      </div>
+
+    </form>
+  </div>  
+</div>
